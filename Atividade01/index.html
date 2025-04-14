@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulário com CEP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h1>Formulário</h1>
+    <form id="cepForm">
+      <label for="matricula">Matrícula:</label>
+      <input type="text" id="matricula" name="matricula" required>
+
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="cep">CEP:</label>
+      <div class="cep-container">
+        <input type="text" id="cep" name="cep" required maxlength="9" placeholder="00000-000">
+        <button type="button" onclick="buscarEndereco()">🔍</button>
+      </div>
+
+      <label for="endereco">Endereço:</label>
+      <input type="text" id="endereco" name="endereco" readonly>
+
+      <button type="submit">OK</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
