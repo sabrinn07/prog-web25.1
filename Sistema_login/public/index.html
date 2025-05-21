@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+  <h2>Login de Usuário</h2>
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Email" required><br><br>
+    <input type="password" id="senha" placeholder="Senha" required><br><br>
+    <button type="submit">Entrar</button>
+  </form>
+  <p id="mensagem"></p>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+
+      const res = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, senha })
+      });
+
+      const data = await res.json();
+      const msg = document.getElementById('mensagem');
+
+      if (data.acesso === 'admin') {
+        msg.innerText = '✅ Bem-vindo, Administrador!';
+      } else if (data.acesso === 'usuario') {
+        msg.innerText = '✅ Bem-vindo, Usuário!';
+      } else {
+        msg.innerText = '❌ Acesso negado!';
+      }
+    });
+  </script>
+</body>
+</html>
